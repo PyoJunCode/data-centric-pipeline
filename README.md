@@ -53,6 +53,8 @@ GCP(Google Cloud Platform) 위에 **Kubeflow Pipeline**과 추가적으로 Local
 
 <p align="center"><img src="https://github.com/PyoJunCode/data-centric-pipeline/blob/master/images/structure.png" ></p>  
 
+<br>전체 흐름을 요약하면 Data pipeline -> ML Pipeline -> Feedback -> Preprocessing/Augmentation -> 반복 의 Workflow를 가지고 있습니다.
+
 **Index**
 
 -> [AI platform](https://github.com/PyoJunCode/data-centric-pipeline#AI-platform)
@@ -229,19 +231,20 @@ Data Pipeline의 중심은 Google Cloud Storage입니다.
 
 
 
-Google Cloud Storage의 DVC bucket에 push된 Data의 cache 정보가 저장합니다.
+Google Cloud Storage의 DVC bucket에 push된 Data의 cache 정보가 저장됩니다.<br>
 
+<br>
 
+[AI platform의 notebook](https://github.com/PyoJunCode/data-centric-pipeline#interactive.ipynb ) 에서 명령어 쉘을 실행하는 것으로 ETL Pipeline의 progress가 실행됩니다.<br>
 
-[AI platform의 notebook](https://github.com/PyoJunCode/data-centric-pipeline#interactive.ipynb ) 에서 Cache로부터 Raw Image data를 **Extract** 합니다.
+- Cloud Storage의 Cache Bucket로부터 Raw Image data를 **Extract** 합니다.
 
-그리고 Raw Image Data를 .tfrecords로 **Transform** 하는 과정을 거칩니다.
+- Raw Image Data를 .tfrecords로 **Transform** 하는 과정을 거칩니다.
 
-마지막으로 transform된 data들을  Cloud Storage의 Data bucket에 **Load** 시켜 Pipeline에 활용될 수 있게 합니다.
+- 마지막으로 transform된 data들을  Cloud Storage의 Data bucket에 **Load** 시켜 Pipeline에 활용될 수 있게 합니다.
 
-
-
-Load된 Data를 가지고 Pipeline 과정들을 거치면서 Error validation을 진행한 뒤, 해당 정보를 feedback으로  다시 Local에서 전처리/증강 과정을 거쳐 일련의 과정을 반복(Reiteration)합니다.
+<br>
+Load된 Data를 가지고 Pipeline 과정들을 거치면서 Error validation을 진행한 뒤, 해당 정보를 feedback으로  다시 Local에서 전처리/증강 과정을 거쳐 일련의 과정을 반복 (Reiteration)합니다.
 
 
 
